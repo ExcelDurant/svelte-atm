@@ -69,7 +69,7 @@
     {/if}
     {#if submitted}
         <h4>
-            your account has been successfully created. Your ID is {id}. Please
+            your account has been successfully created. Your ID is "{id}". Please
             do not lose it. You'll need it to make transactions
         </h4>
         <h5>your balance is 0</h5>
@@ -122,7 +122,7 @@
         align-items: flex-start;
         text-transform: uppercase;
         justify-content: space-around;
-        font-size: 17px;
+        font-size: 14px;
     }
 
     .middle-sec {
