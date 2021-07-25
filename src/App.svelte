@@ -1,10 +1,10 @@
 <script>
-	import { fade,fly } from 'svelte/transition';
+	import { fade, fly } from "svelte/transition";
 
 	let account = {
-		pin: "1234",
-		name: "Excel",
-		id: "fireforce",
+		pin: "",
+		name: "",
+		id: "",
 		balance: 0,
 	};
 
@@ -14,6 +14,7 @@
 	let showAction = false;
 	let money = false;
 	let card = true;
+	let showLoader = false;
 
 	import Welcome from "./components/welcome.svelte";
 	import EnterCard from "./components/EnterCard.svelte";
@@ -30,6 +31,7 @@
 					bind:keyPad={account.pin}
 					bind:backToHome={showWelcome}
 					bind:showScreen={showRegister}
+					bind:showLoader
 				/>
 			{/if}
 			{#if showWelcome}
@@ -41,22 +43,26 @@
 			{/if}
 			{#if showEnterCrd}
 				<EnterCard
-					bind:id={account.id}
-					bind:pin={account.pin}
+					bind:account
 					bind:card
 					bind:showScreen={showEnterCrd}
 					bind:showAction
+					bind:showLoader
 				/>
 			{/if}
 			{#if showAction}
 				<Action
-					bind:balance={account.balance}
+					bind:account
 					bind:money
 					bind:showScreen={showAction}
 					bind:showWelcome
+					bind:showLoader
 				/>
 			{/if}
 
+			{#if showLoader}
+				<div class="donutSpinner" />
+			{/if}
 			<div class="bottom-sec">
 				<div class="money-slot">
 					{#if money}
@@ -65,7 +71,10 @@
 				</div>
 				<div class="card-slot">
 					{#if card}
-						<div transition:fly="{{ y: -50, duration: 1000 }}" class="card" />
+						<div
+							transition:fly={{ y: -50, duration: 1000 }}
+							class="card"
+						/>
 					{/if}
 				</div>
 			</div>
@@ -76,7 +85,7 @@
 <style>
 	.page {
 		width: 100%;
-		height: 100vh;
+		min-height: 100vh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -129,5 +138,21 @@
 		height: 100px;
 		background-color: blueviolet;
 		top: -10%;
+	}
+
+	.donutSpinner {
+		display: inline-block;
+		border: 7px solid hsl(222 100% 95%);
+		border-left-color: hsl(243 80% 62%);
+		border-radius: 50%;
+		width: 80px;
+		height: 80px;
+		animation: donut-spin 1.2s linear infinite;
+	}
+
+	@keyframes donut-spin {
+		to {
+			transform: rotate(1turn);
+		}
 	}
 </style>

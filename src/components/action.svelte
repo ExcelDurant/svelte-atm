@@ -1,10 +1,11 @@
 <script>
-    export let balance;
+    import { db } from "./../firebase";
+    export let account;
     export let showScreen;
     export let showWelcome;
     export let money;
+    export let showLoader;
     let main = true;
-    let enterPin = false;
     let action = 0;
     let keyPad = "";
 
@@ -12,6 +13,7 @@
         if (num == 1) {
             main = false;
             action = 1;
+            money = false;
         } else if (num == 2) {
             main = false;
             action = 2;
@@ -31,24 +33,40 @@
     const clear = () => (keyPad = "");
 
     function addAmt() {
-        balance += Number(keyPad);
-        action = 1;
+        account.balance += Number(keyPad);
+        showLoader = true;
+        db.collection("accounts")
+            .doc(account.id)
+            .set(account)
+            .then(() => {
+                showLoader = false;
+                action = 1;
+            });
     }
 
     function removeAmt() {
-        if (Number(keyPad) < balance) {
-            balance -= Number(keyPad);
-            action = 1;
-            money = true;
+        if (Number(keyPad) < account.balance) {
+            showLoader = true;
+            account.balance -= Number(keyPad);
+            db.collection("accounts")
+                .doc(account.id)
+                .set(account)
+                .then(() => {
+                    action = 1;
+                    money = true;
+                    showLoader = false;
+                });
         } else {
             window.alert("your balance is insufficient");
             action = 1;
+            showLoader = false;
         }
     }
 
     function goBack() {
         action = 0;
         main = true;
+        money = false;
     }
 </script>
 
@@ -57,18 +75,18 @@
         <h5>Press</h5>
         <h6>1. to check your balance</h6>
         <h6>2. to deposit money</h6>
-        <h6>3. to remove money</h6>
+        <h6>3. to withdraw money</h6>
         <h6>4. to close</h6>
     {/if}
     {#if action == 1 && !main}
-        <h5>your current balance is {balance}</h5>
+        <h5>your current balance is {account.balance}</h5>
         <button on:click={goBack}>back</button>
     {/if}
     {#if action == 2 && !main}
         <h5>enter the amount you want to deposit</h5>
     {/if}
     {#if action == 3 && !main}
-        <h5>enter the amount you want to remove</h5>
+        <h5>enter the amount you want to withdraw</h5>
     {/if}
 </div>
 <div class="middle-sec">

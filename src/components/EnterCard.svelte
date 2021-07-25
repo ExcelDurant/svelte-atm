@@ -1,9 +1,12 @@
 <script>
+    import { db } from "./../firebase";
     export let showScreen;
     export let showAction;
     export let card;
-    export let id;
-    export let pin;
+    // export let id;
+    // export let pin;
+    export let account;
+    export let showLoader;
 
     let inId;
 
@@ -13,13 +16,22 @@
     let keyPad = "";
 
     function enterId() {
-        if (inId == id) {
-            showId = false;
-            showPin = true;
-            card = false
-        } else {
-            window.alert("wrong credentials")
-        }
+        showLoader = true;
+        card = false;
+        db.collection("accounts")
+            .doc(inId)
+            .get()
+            .then((doc) => {
+                showLoader = false;
+                if (doc.exists) {
+                    showId = false;
+                    showPin = true;
+                    account = doc.data();
+                } else {
+                    window.alert("wrong card entered");
+                    card = true;
+                }
+            });
     }
 
     const select = (num) => () => {
@@ -29,11 +41,11 @@
     const clear = () => (keyPad = "");
 
     function submitPin() {
-        if (keyPad == pin) {
+        if (keyPad == account.pin) {
             showScreen = false;
             showAction = true;
         } else {
-            window.alert("wrong credentials")
+            window.alert("wrong credentials");
         }
     }
 </script>
