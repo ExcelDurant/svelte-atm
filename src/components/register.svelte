@@ -120,7 +120,6 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        text-transform: uppercase;
         justify-content: space-around;
         font-size: 14px;
     }
