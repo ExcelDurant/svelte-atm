@@ -83,13 +83,17 @@
 </main>
 
 <style>
+	main {
+		height: 100%;
+	}
 	.page {
 		width: 100%;
-		min-height: 100vh;
+		min-height: 700px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: rgb(42, 80, 102);
+		background-color: rgba(0, 0, 0, 0.11);
 	}
 
 	.atm {
