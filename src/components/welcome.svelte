@@ -67,6 +67,7 @@
     .pad {
         min-width: 50px;
         height: 35px;
+        padding: 5px 0;
         color: white;
         font-weight: 600;
         background-color: rgb(238, 34, 68);
