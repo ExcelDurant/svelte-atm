@@ -92,7 +92,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: rgb(42, 80, 102);
+		color: rgb(68, 68, 68);
 		background-color: rgba(0, 0, 0, 0.11);
 	}
 
@@ -100,6 +100,7 @@
 		width: 400px;
 		height: 600px;
 		border: 5px solid crimson;
+		box-shadow: 10px 8px 1px 10px crimson;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -144,6 +145,7 @@
 		width: 90%;
 		height: 100px;
 		background-color: blueviolet;
+		box-shadow: 3px 6px 1px 2px rgb(140, 63, 212);
 		top: -10%;
 	}
 
