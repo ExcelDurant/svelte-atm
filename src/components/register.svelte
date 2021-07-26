@@ -134,6 +134,9 @@
         width: 40%;
         height: 40px;
         border: 2px solid crimson;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .pad-container {
@@ -147,11 +150,11 @@
 
     .pad {
         min-width: 50px;
-        height: 30px;
+        height: 35px;
         color: white;
         font-weight: 600;
         background-color: rgb(238, 34, 68);
-        font-size: 25px;
+        font-size: 22px;
         display: flex;
         justify-content: center;
         align-items: center;

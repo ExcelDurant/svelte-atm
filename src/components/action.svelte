@@ -151,6 +151,9 @@
         width: 40%;
         height: 40px;
         border: 2px solid crimson;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .pad-container {

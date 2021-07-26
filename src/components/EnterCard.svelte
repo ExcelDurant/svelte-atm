@@ -3,16 +3,12 @@
     export let showScreen;
     export let showAction;
     export let card;
-    // export let id;
-    // export let pin;
     export let account;
     export let showLoader;
 
     let inId;
-
     let showPin = false;
     let showId = true;
-
     let keyPad = "";
 
     function enterId() {
@@ -67,6 +63,7 @@
         <button class="submit-btn" on:click={enterId}>submit</button>
     {/if}
     {#if showPin}
+        <h3>welcome {account.name}</h3>
         <h3>please enter your pin to continue</h3>
     {/if}
 </div>
@@ -131,6 +128,9 @@
         width: 40%;
         height: 40px;
         border: 2px solid crimson;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .pad-container {
@@ -148,7 +148,7 @@
         color: white;
         font-weight: 600;
         background-color: rgb(238, 34, 68);
-        font-size: 25px;
+        font-size: 20px;
         display: flex;
         justify-content: center;
         align-items: center;

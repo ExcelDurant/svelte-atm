@@ -89,6 +89,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		color: rgb(42, 80, 102);
 	}
 
 	.atm {
@@ -99,8 +100,10 @@
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		background-color: rgb(173, 172, 172);
+		background-color: rgba(130, 202, 236, 0.411);
+		border-radius: 20px;
 	}
+
 
 	.bottom-sec {
 		width: 90%;
